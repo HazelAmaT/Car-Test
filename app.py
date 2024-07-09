@@ -35,12 +35,12 @@ st.title('Análisis de Precios de Automóviles')
 # Función para crear un histograma interactivo
 def plot_barchart(df, column,max_cost):
     filtered_df = df[df['price'] <= max_cost]  # Filtra los datos según el valor máximo de precio seleccionado
-    fig = px.scatter(filtered_df, x=column, y='price', title='Gráfico de Dispersión de Precios de Automóviles')
+    fig = px.scatter(filtered_df, x='odometer', y='price', title='Gráfico de Dispersión de Precios de Automóviles')
     fig.update_layout(xaxis_title=column, yaxis_title='Precio')
     st.plotly_chart(fig)
 
 # Mostrar una selección de las columnas disponibles
-column_to_analyze = st.selectbox("Selecciona la columna de precio", vehicle_df.columns)
+column_to_analyze = st.selectbox("Selecciona la columna de precio", vehicle_df['odometer'])
 
 # Selección del número de bins para el histograma
 max_cost = st.slider('Selecciona el rango de precios', vehicle_df['price'].min(), vehicle_df['price'].max(), value=vehicle_df['price'].max(),step=1)
